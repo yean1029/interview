@@ -1,0 +1,167 @@
+﻿1.결합방향과 우선순위에 대하여 설명하시오.
+﻿ - 결합방향이란? 연산기호 우선 순위가 같을 때 적용하는 기준, 오른쪽 혹은 왼쪽 방향으로 연산
+  ﻿ex) 대입= 의 결합방향은 ←
+ - ﻿우선순위란? 여러 개의 연산기호가 존재하는 경우 우선적으로 연산되어야 하는 순위, 가장 높은 연산기호 []
+
+2.1 초과 100 미만인가? 를 코딩을 하게 되면?
+ class java{
+    public static void main(String[] args){
+       int num = 10;
+       boolean result;
+
+       result = (num > 1) && (num < 100) ;
+       System.out.println(result);
+    }
+ }
+
+3.2의 배수 또는 3의 배수? 를 코딩을 하게 되면?
+ class java{
+    public static void main(String[] args){
+       int num = 4;
+       boolean result;
+
+       result = ((num % 2) == 0) || ((num % 3) == 0) ;
+       System.out.println(result);
+    }
+ }
+
+4. && 와  || 설명하시오.
+ - &&(AND연산자): 두 개의 값이 모두 true 이어야 true 저장 (단 한 개라도 false라면 false)
+ - || (OR연산자): 둘 중 하나라도 true 이라면 true 저장
+ - ! (NOT연산자): ﻿반전시켜 얻은 결과를 저장 (t → f, f → t)
+
+5. 아래의 프린트 결과를 예측해 보고, 코딩후 결과를 확인하시오
+class SCE {
+    public static void main(String[] args) {
+        int num1 = 0; 
+        int num2 = 0;
+        boolean result;
+        
+        result = ((num1 += 10) < 0) && ((num2 += 10) > 0);
+        System.out.println("result = " + result);
+        System.out.println("num1 = " + num1);
+        System.out.println("num2 = " + num2 + '\n');
+		
+        result = ((num1 += 10) > 0) || ((num2 += 10) > 0);
+        System.out.println("result = " + result);
+        System.out.println("num1 = " + num1);
+        System.out.println("num2 = " + num2);
+    }
+}
+﻿
+ - result = false
+   num1 = 10
+   num2 = 0
+
+   result = true
+   num1 = 20
+   num2 = 0
+﻿
+ - && 연산은 두 조건이 모두 true 일 때 true를 저장하지만,
+   num의 값이 대입된 후 (num1 += 10) < 0 의 조건이 F를 뜻하므로 뒤에 조건 실행X
+   → 실행되지 않으므로 num2에는 대입되지 않으므로 num2는 그대로 0 저장.
+ - || 연산은 두 조건중 한 개라도 true 이면 true 저장
+   num1=10 이므로 대입된 후 20으로 저장되고 (num1 += 10) > 0 의 조건이 T를 뜻하므로 뒤에 조건 실행X
+   → 마찬가지로 조건이 실행되지 않으므로 num2는 0 저장.
+
+6.아래가 에러가 나는 이유를 설명하고, 수정하시오
+ short num1
+ short num = -num 
+
+ - -1 * num, 이와 같이 연산이 이루어지고 있어 자동으로 더 큰 메모리를 찾기 때문에 강제 형변환이 필요. 
+ - ﻿num 값이 없기때문에 값을 주어야함.
+ - 수정: short num = 100; short num = (short)(-num)
+
+7.전위증가 연산자와 후위증가 연산자의 차이는?
+ - num++;, ++num; 모두 num = num + 1; 을 의미
+ - 차이점? ++num; 는 num의 값에 하나 증가 후 출력, num++; 는 실행 단위가 끝나고 나서 num 값이 하나 증가.
+
+8.아래의 비트연산자 4가지를 설명하시오.
+ - &: 비트별로 AND 연산
+ - |: 비트별로 OR 연산 (비트가 한 개라도 1이 있으면 1로 저장)
+ - ^: 비트별로 XOR 연산 (비트 값이 같으면 0, 다르면 1로 저장)
+ - ~: 반전시켜 얻은 결과를 저장(!, NOT과 같은 역할)
+
+9.아래의 쉬프트 연산자에 대하여 설명하시오.
+ - << : 비트 열을 왼쪽으로 이동시키고, 이동에 따른 빈 공간을 0으로 채움, 값의 2배 증가
+ - >>: 비트 열을 오른쪽으로 이동시키고, 이동에 따른 빈 공간을 음수의 경우 1, 양수의 경우 0으로 채움, 2로 나눈 결과
+
+10.전위연산자와 후위연산자에 대하여 설명하시오.
+ - 전위연산자(prefix): 피연산자 저장된 값에 1이 증가 혹은 감소되어 저장 (++n, --n)
+ - 후위연산자(postfix): 실행 단위(;) 혹은 우선적으로 연산이 필요한 것 실행된 후 1이 증가 혹은 감소되어 저장.(n++, n--)
+
+11.아래의 출력값을 예측하시오.
+class AssignSteResult {
+    public static void main(String[] args) {
+        int num1 = 10, num2 = 20, num3 = 30;
+        num1 = num2 = num3;
+
+        /*
+          = 연산자는 결합 방향이 오른쪽에서 왼쪽으로 진행된다. 
+          따라서 위의 문장은 다음과 같다. 
+          num1 = (num2 = num3);        
+        */
+        
+        System.out.println(num1);	
+        System.out.println(num2);
+        System.out.println(num3);
+    }
+}
+
+  30
+  30
+  30
+  - num3이 30이므로 num2에 30이 대입된 후 다시 num1에 30이 대입되므로 모두 30이 저장됨.
+
+12.아래의 출력값을 예측하시오.
+class SCE {
+    public static void main(String[] args) {
+        int num1 = 0; 
+        int num2 = 0;
+        boolean result;
+
+        num1 += 10;
+        num2 += 10;        
+        result = (num1 < 0) && (num2 > 0);
+
+        System.out.println("result = " + result);
+        System.out.println("num1 = " + num1);
+        System.out.println("num2 = " + num2 + '\n');
+		
+        num1 += 10;
+        num2 += 10;        
+        result = (num1 > 0) || (num2 > 0);
+
+        System.out.println("result = " + result);
+        System.out.println("num1 = " + num1);
+        System.out.println("num2 = " + num2);
+    }
+}
+
+  result = false
+  num1 = 10
+  num2 = 10
+
+  result = true
+  num1 = 20
+  num2 = 20
+
+ - num 값에 먼저 += 연산이 실행되고 조건이 실행되었으므로 조건이 맞지않더라도 연산 된 값이 저장됨.
+
+13.아래의 출력값을 예측하시오.
+class AddNum {
+    public static void main(String[] args) {
+        int result = 3 + 6;
+        System.out.println("3 + 6 = " + result);
+        
+        result += 9;
+        System.out.println("3 + 6 + 9 = " + result);
+        
+        result += 12;
+        System.out.println("3 + 6 + 9 + 12 = " + result);
+    }
+}
+ 3 + 6 = 9
+ 3 + 6 + 9 = 18
+ 3 + 6 + 9 + 12 = 30 
+- 복합대입 연산자은 형변환 필요하지 않음.
