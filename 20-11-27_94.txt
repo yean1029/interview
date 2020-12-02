@@ -1,0 +1,246 @@
+﻿1.조건문의 3가지 종류를 나열하고 설명하시오.
+ - if문: if(n1 < n2){실행문}
+   ()이 괄호 안은 위와 같이 boolean 값이 나올 수 있는 조건을 넣어야함. 
+ - if~else문: 조건 일치 시 if 실행문 저장, 불일치 시 else 실행문 저장되며, 반드시 실행될 수 밖에 없음.
+ - if~elseif~else문: else if 중간에 여러개의 조건들 추가 가능.
+
+2.아래의 프로그램을 짜시오.
+ - 국어:80 수학:80 영어:60 총점과 평균 출력하고, 평균에 따른 수우미양가를 출력하시오 총점:220, 평균:73.333... 미입니다.
+ class quiz{
+    public static void main(String[] args){
+		
+	int kor = 80;
+	int math = 80;
+	int eng = 60;
+		
+	int total;
+	double avg;
+		
+	total = kor + math + eng;
+	avg = total / 3.0;         //또는 (double)total / 3;
+		
+	System.out.println("총점은: " + total);
+	System.out.println("평균은: " + avg);
+		
+	if(avg >= 90){
+		System.out.println("수입니다.");
+	}
+	else if(avg >= 80){
+		System.out.println("우입니다.");
+	}
+	else if(avg >= 70){
+		System.out.println("미입니다.");
+	}
+	else if(avg >= 60){
+		System.out.println("양입니다.");
+	}
+	else{
+		System.out.println("가입니다.");
+	}
+     }
+ } 
+ 
+ - int num = 33 할당 후, 해당 숫자 짝수면 짝수입니다. 홀수면 홀수입니다. 출력  33은 홀수입니다.
+ class quiz{
+     public static void main(String[] args){
+	int num = 33;
+		
+	if(num % 2 ==0){
+		System.out.println(num + "은 짝수입니다.");
+	}else{
+		System.out.println(num + "은 홀수입니다.");
+	}	
+    }
+ }
+
+ - int num = 66 할당 후, 2의 배수이고 3의 배수이면, 해당 수를 출력하고, 
+   아니면  2의 배수이고 3의 배수가 아닙니다 출력.           66은 6의 배수입니다.
+ class quiz{
+     public static void main(String[] args){
+	int num = 66;
+		
+	if((num % 2 == 0) && (num % 3 ==0)){
+		System.out.println(num + "은 6의 배수입니다.");
+	}else{
+		System.out.println(num + "은 2의 배수이고 3의 배수가 아닙니다.");
+	}
+     }
+  }
+
+ - 80, 33 ,55 = 최대값을 출력하시오.  80이 최대값입니다.
+ class quiz{
+     public static void main(String[] args){
+	int num1 = 80;
+	int num2 = 33;
+	int num3 = 55;
+		
+	if((num1 > num2) && (num1 > num3)){
+		System.out.println(num1 + "이 최대값입니다.");
+	}else if((num2 > num1) && (num2 > num3)){
+		System.out.println(num2 + "이 최대값입니다.");
+	}else{
+		System.out.println(num3 + "이 최대값입니다.");
+	}			
+     }
+  }
+
+3.아래를 삼항연산자를 사용하여 프로그래밍 하시오.
+ - 80, 33 ,55 = 최대값을 출력하시오.   80
+ class quiz{
+     public static void main(String[] args){
+	int a = 80;
+        int b = 33;
+        int c = 55;
+    
+   	int max;
+    
+    	max = (a>b) ? (a>c ? a : (c>b ? c : b)) : b;
+
+    // (c>b ? c : b) c,b를 비교 true이므로 c를 반환, (a>c ? a : c) a 반환,(a>b) ? a : b 
+    //  max = a 반환  
+
+4.switch 문에서 '걸어서 하늘까지' 를 설명하시오.
+ - 걸리면 브레이크까지: break 문에 해당되는 순간 switch 문을 빠져나간다는 의미.
+ - default: if 문의 else 역할과 비슷
+
+5.아래를 프로그래밍 하시오.
+ - int num = -10 을 할당 후 해당 정수에 대한 절대값을 출력하는 프로그램을 작성하시오.
+ class quiz{
+   public static void main(String[] args){
+      int num = -10;
+	 
+      if(num >= 0){
+	  System.out.println(num);
+      }else{
+	  System.out.println(-num);
+      }
+   }
+ }
+
+6.반복문에서 while 문과 do while 문의 차이는?
+ - while 문의 조건은 앞에 존재하며, 조건이 만족되지 않으면 실행시키지 않음. 
+ - do while 문의 조건은 뒤에 존재하며, do while 문은 반드시 한 번은 실행문을 저장.
+
+7.for 문에서 for 문이 실행되는 순서를 설명하시오.
+ - ﻿class Hi{
+      public static void main(String[] args){
+	for(int i = 0; i < 3; i++){
+    
+	System.out.println("실행문"); 
+     }
+   }
+ }
+ - 실행순서:int i=0; → i<3; → 실행문출력 → i++ → i<3; → 실행문출력 → i++ ...반복 ; 조건 불충족 시 빠져나옴.
+
+8. 9단을 출력하는 프로그램을 만드시오.(while 문 사용할것)
+ class Exam{
+    public static void main(String[] args){
+	int dan = 9;
+	int i = 1;
+		
+	while(i <= 9){
+	   System.out.println(dan + "*" + i + "=" + (dan * i));
+	   i++;		
+	}
+     }
+  }
+ 
+9.1부터 100까지의 합을 구하시오.5050
+ class Exam{
+    public static void main(String[] args){
+	int sum = 0;
+		
+	for(int i = 1; i<=100; i++){
+	   sum = sum + i;
+	   System.out.println(sum);
+	}
+    }
+ }
+
+10.1부터 100까지의 홀수들의 합을 구하시오. 2500
+ class Exam{
+    public static void main(String[] args){
+	int sum = 0;
+
+	for(int i = 1; i <= 100; i++){
+	    if(i % 2 == 1){
+	    sum = sum + i;
+	    System.out.println(sum);
+       }
+    }
+ }
+
+11.반복문에서의 break 와 continue 를 설명하시오.
+﻿ - break: 반복문에서 break가 실행되면 반복문에서 빠져나옴.
+ - continue: 조건이 만족되는 값만 출력되고, 계속적으로 조건으로 이동해서 확인.
+
+12. 아래를 프로그래밍 하시오.
+ - 1과 1000 사이의 숫자중 3의 배수이자 5의 배수인 첫번째 수는?  15 
+ class Break{
+    public static void main(String[] args){
+	int num = 1;
+	boolean search = false;
+	
+	while(num < 1000){
+	    if(((num % 3) == 0) && ((num % 5) == 0)){
+		search = true;
+		break;
+	    }
+		num++;
+	}
+	if(search)
+	    System.out.println("찾는 정수 :" + num);
+	else
+ 	    System.out.println("3의 배수이자 5의 배수인 수를 찾지 못했습니다.");
+      }
+  }
+
+ - 1과 1000 사이의 숫자중 2의 배수이자 3의 배수인 수는 모두 몇개인가? 166개
+ class BreaK{
+     public static void main(String[] args){
+	int num = 1;
+	int count = 0;
+		
+	while((num++) < 1000){
+	   if(((num % 2) != 0) || ((num % 3) != 0)){
+	     continue;				
+	}  
+	     count++;
+      }				
+	     System.out.println(count);			
+    }		
+ } 
+
+13.화폐매수 구하기?
+=126500 의 금액을 한국화폐으로 바꾸었을 때 각각 몇 개의 화폐가 필요한지 계산해서 출력하라.
+예) int 126500;
+   오만원 : 2장	
+   만원:    2장
+   오천원짜리 :1장
+   천원짜리: 1
+   오백원짜리 1개
+   백원짜리 0개
+
+//금일 연습 프로그래밍 내용
+
+        /*
+         1. 국어:80 수학:80 영어:60        	
+        	총점과 평균을 출력하고, 평균에 따른 수우미양가를 출력하시오.
+         2. int num = 33 할당후 해당 숫자 짝수면 짝수 입니다 출력. 홀수면 홀수 출력
+         3. int num = 66 할당후, 2의 배수 이고 3의 배수이면, 해당 수를 출력하고, 
+         아니면  2의 배수 이고 3의 배수 가 아닙니다 출력.
+		 4. 80 , 33 ,55 = 최대값을 출력하시오.
+		 5. 1-6 까지의 임의의 정수를 뽑아서 몇번이 나왔는지 맞추는 게임	
+		 7. int dan  = 3;  구구단 출력
+		 8. 1부터 100까지의 합을 구하시오.
+		 9. 1부터 100까지의 짝수의 합 구하시오.
+		 10.영희가 은행에 500원(원금)을 입금했다. 
+		 하루에 1원씩 이자가 붙는다.
+		 5일 후(일수) 잔액은 얼마가 되어 있을까?
+        */
+
+
+
+
+ 
+
