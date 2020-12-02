@@ -1,0 +1,191 @@
+﻿1.아래가 의도하지 않은 결과를 나타내는 이유를 설명하시오.
+ char ch = '가';
+ System.out.println(ch + '\n')
+ - '\n'은 문자가 아닌 아스키 코드표를 통해 십진수로 해석되어 값이 출력되므로 "\n" 으로 수정이 필요하다.
+
+2.변수의 scope 는?
+ - 변수에 대한 scope 영역은 중괄호{}가 범위를 뜻하며, 같은 영역 내(지역변수)에서 동일 이름의 변수 선언은 불가함.
+
+3.지역변수?
+ - 메소드 내에서 선언하는 변수를 뜻함
+ - 메소드 이 외에 존재하는 변수는 객체변수(=인스턴스 변수)라 정의한다.
+ 
+4.펙토리얼을 구하는 재귀 함수를 만드시오.
+ - 재귀 호출이란? 메소드에서 자신의 메소드를 다시 호출하는 것.
+  class RexulFactorial{
+     public static void main(String[] args) {
+	System.out.println("3 factorial: " + factorial(3));
+	System.out.println("12 factorial: " + factorial(12));
+     }
+
+     public static int factorial(int n) {		
+        if(n == 1)
+	    return 1;
+	else 
+            return n * factorial(n-1);
+  }
+ }
+
+5.클래스의 구성요소는 무엇인가?
+ - 클래스 = 데이터 + 기능
+   클래스는 변수(인스턴스)와 함수로 구성, 변수를 이용하여 함수를 조작(컨트롤)함.
+ - new: 객체 생성의 역할(키워드), 생성한 class를 메모리에 저장하는 역할..
+
+6.원의 넓이는 구하는 프로그램을 아래와 같이 작성하시오.
+ -원클래스를 만들것
+ class Circle{
+   double radius;
+
+   public double getRadius(){
+      return radius;
+   }
+   public void setRadius(double radius){  
+      this.radius = radius;
+   }
+   public double getArea(){
+      return radius * radius * Math.PI;   
+   }
+ }
+ -메인 메소드를 가진 다른 클래스에서 원 객체를 생성할것
+ class CircleExam{
+   public static void main(String[] args) {
+      Circle circle = new Circle();
+
+      circle.setRadius(10);	
+      double area = circle.getArea();
+		
+      System.out.println("원의 넓이는 " + area);
+   }
+ }
+
+7.객체란 무엇인가?
+ - 객체란 어떠한 속성값과 행동을 가짐.
+   ex) Circle circle = new Circle(); ( int a = 10; 의미와 유사)
+
+       Circle circle;
+       circle = new Circle(); 
+       circle 메모리 공간이 생성되고 해당되는 주소를 찾아(Circle) 함수를 통해 크기와 용도가 지정되어 값이 출력됨.
+       이 때 생성된 circle과 메소드들을 객체라 한다.
+  
+
+8. 아래의 클래스에 대하여, 메모리 그림을 그리시오.
+ Rectangle rec = new Rectangle();
+ 
+ public class Rectangle {
+	int height;
+	int width;
+	
+	public int getHeight() {
+		return height;
+	}
+	
+	public void setHeight(int height) {
+		this.height = height;
+	}
+	
+	public int getWidth() {
+		return width;
+	}
+	
+	public void setWidth(int width) {
+		this.width = width;
+	}
+	
+	public int getArea() {
+		return width * height;
+	}	
+}
+ rec →  int height
+         int width 
+         getHeight()
+         setHeight()
+         getWidth()
+         setWidth()
+         getArea()
+
+9.클래스와 객체의 차이는 무엇인가?
+ - 클래스는 변수(인스턴스)와 함수로 구성되어 다른 원 클래스를 통하여 값이 입력되어 작동.
+ - 선언된 타입에 맞는 메모리 공간이 생성되고 해당되는 클래스를 찾아 함수를 통해 크기와 용도가 지정되어 하나의 객체가 생성.
+  (두 개의 클래스에서 메인 메소드를 가진 클래스를 통해 값이 입력되어 하나의 객체를 생성)
+
+10.아래의 프로그램을 작성하시오.
+ -1 부터 num 까지 합을 구하는 class 를 작성하도록 하시오.
+  모르겠습니다.
+
+11.아래의 클래스를 작성하시오.
+StraPrint strPrint = new StarPrint();
+
+strPrint.printTriangle(3); 
+System.out.println();
+strPrint.printReverseTriangle(3); 
+===============================
+*
+**
+***
+
+***
+**
+*
+
+ class StrPrint{
+    public void printTriangle(int num) {
+	for(int i = 1; i <= 3; i++) {
+	    for(int j = 1; j <= i; j++) {
+		System.out.print("*");
+	}System.out.println();
+  }	
+ }
+    public void printReverseTriangle(int num) {
+	for(int i = 1; i <= 3; i++) {
+	    for(int j = 3; j >= i; j--) {
+		System.out.print("*");
+	}System.out.println();
+  }	
+ }
+}
+  ---------------------------------------------
+ class StrPrintExam{
+   public static void main(String[] args) {
+	StrPrint strPrint = new StrPrint();
+		
+	strPrint.printTriangle(3);
+	System.out.println();
+	strPrint.printReverseTriangle(3);
+	}
+  }
+
+12.아래의 프로그래밍을 작성하시오.
+ Gugudan gugudan = new Gugudan();
+ gugudan.printGugu(10);  //1단부터 10단까지 출력
+ gugudan.printGugu(20);  //1단부터 20단까지 출력
+
+ class Gugudan{
+   public void dan(int num){
+     for(int i = 1; i <= num; i++){
+	for(int j = 1; j <= 9; j++){
+	System.out.println(i + " x " + j + " = " + (i * j));
+   }
+  }
+ }
+}
+  ------------------------------------------------
+ class GugudanExam{
+   public static void main(String[] args){
+        Gugudan gugudan = new Gugudan();
+		
+	gugudan.dan(10);
+	System.out.println();
+	gugudan.dan(20);
+        }
+    }
+
+13.아래의 BankAccount 객체에 대하여 그림을 그리시오.
+   BankAccount ref1 = new BankAccount();
+   BankAccount ref2 = ref1;
+  
+  ref1     
+ (1000)
+         →   BA에 대한 class 
+  ref2 
+ (1000)  
+ 
