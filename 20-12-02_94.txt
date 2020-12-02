@@ -1,0 +1,238 @@
+﻿1.생성자란 무엇인가?
+ - Constructor, 생성자 함수라고 하며, 초기화 메소드를 대신하여 초기화 역할을 한다.
+ - 생성자의 이름은 클래스 이름과 동일하게 표기.
+ - ﻿ex) Rectangle rec = new Rectangle();  이 때 생성자 함수는 Rectangle()
+
+2.디폴트 생성자란 무엇인가?
+ - 함수가 없어도 컴파일 오류가 발생하지 않도록 하며,
+   컴파일러에 의해 디폴트 생성자가 자동 삽입되기 때문에 함수가 없어도 호출이 가능하다.
+
+3.생성자의 용도에 대하여 설명하시오.
+ - 생성자 함수를 리턴(void) 타입이 존재하지 않음
+   why? 값들에 대한 초기화를 주기 위해 값을 반환하는 용도를 제한하기 위함.(초기화 용도가 목적)
+
+4.null 에 대하여 설명하시오.
+ - 참조형 변수에만 사용 가능하며, 참조하는 인스턴스(변수)와의 관계를 끊음(즉, 참조변수를 초기화함)
+ - ex) Rectagle rec = null;
+
+       ﻿if(rec ! = null)
+       rec.getHight
+     
+    //rec에 null이 대입되어 초기화시키지만 if를 사용하면 rec 사용 가능함.
+
+﻿
+5.금일 프로그래밍 했던 문제
+========================================
+자바 클래스를 작성하는 연습을 해보자. 다음 main() 메소드를 실행하였을 때 예시와 같이 출력되도록 TV 클래스를 작성하라.
+
+public static void main(String[] args) {
+   TV myTV = new TV("LG", 2017, 32); //LG에서 만든 2017년 32인치
+   myTV.show();
+}
+
+class TV{
+   String brand;
+   int year;
+   int inch;
+	
+   public TV(String brand, int year, int inch){
+	this.brand = brand;
+	this.year = year;
+	this.inch = inch;
+   }	
+   public void show(){
+	System.out.println(brand +"에서 만든 " + year + "년형 " + inch + "인치 TV");
+   }
+ }
+
+ LG에서 만든 2017년형 32인치 TV 
+
+==========================================
+  int math, science, english;
+  math = 90;
+  science = 100; 
+  english = 80;
+		
+  Grade me = new Grade(math, science, english);
+  System.out.println("평균은 " + me.average());
+
+ class Grade{
+  int math;
+  int science;
+  int english;
+
+  public Grade(int math, int science, int english){
+     this.math = math;
+     this.science = science;
+     this.english = english;
+  }
+  public double average(){
+     return (math + science + english) / 3.0;
+   }
+ }    
+
+  평균은 90.0 
+
+============================================
+노래 한 곡을 나타내는 Song 클래스를 작성하라. Song은 다음 필드로 구성된다.
+ - 노래의 제목을 나타내는 title
+ - 가수를 나타내는 artist
+ - 노래가 발표된 연도를 나타내는 year
+ - 국적을 나타내는 country
+
+또한 Song 클래스에 다음 생성자와 메소드를 작성하라.
+ - 생성자 2개: 기본 생성자와 매개변수로 모든 필드를 초기화하는 생성자
+ - 노래 정보를 출력하는 show() 메소드
+ - main() 메소드에서는 1978년, 스웨덴 국적의 ABBA가 부른 "Dancing Queen"을
+   song 객체로 생성하고 show()를 이용하여 노래의 정보를 다음과 같이 출력하라.
+ 
+ class Song{
+  String title;
+  String artist;
+  int year;
+  String country;
+
+  public Song(){} 
+	
+  public Song(String title, String artist, int year, String country){
+     this.title = title;
+     this.artist = artist;
+     this.year = year;	
+     this.country = country;
+  }
+	
+  public void show(){
+     System.out.println(year + "년 " + country + " 국적의 " + artist + "가 부른 " + title);
+  }
+ }
+
+ 1978년 스웨덴 국적의 ABBA가 부른 Dancing Queen
+
+===============================================
+아래와 같이 성적을 연속적으로 입력 받고 평균을 내는 프로그램을 작성하시오.
+
+국어 영어 수학을 입력하세요!
+100 60 70
+평균은 76.66666666666667
+계속 하시겠습니까
+y
+국어 영어 수학을 입력하세요!
+90 80 70
+평균은 80.0
+계속 하시겠습니까
+n
+프로그램 종료 입니다.
+
+  public static void main(String[] args){
+    Scanner scanner = null;
+		
+    while(true){
+       scanner = new Scanner(System.in);
+       int math, science, english;
+			
+       System.out.println("국어 영어 수학을 입력하세요!");
+			       
+       math = scanner.nextInt();
+       science = scanner.nextInt();
+       english = scanner.nextInt();
+						
+       Grade me = new Grade(math, science, english);
+       System.out.println("평균은 " + me.average());
+			
+       System.out.println("계속 하시겠습니까");
+			
+       String yesOrno = scanner.next();
+       if(yesOrno.equals("Y") || yesOrno.equals("y"))
+ 	    continue;
+       else
+	    break;
+       }
+	System.out.println("프로그램 종료 입니다.");
+	scanner.close();
+   }
+ }		
+
+==============================================
+6. 아래의 프로그램을 작성하시오.
+ - 화폐 매수 구하기
+ - 반드시 클래스로 작성할것 
+출력
+---------------------------------
+136000
+오만원 : 2장
+만원 : 3장
+오천원 : 1장
+천원 : 1장
+오백원 : 0개
+백원 : 0개
+계속 하시겠습니까
+y
+1456000
+오만원 : 29장
+만원 : 0장
+오천원 : 1장
+천원 : 1장
+오백원 : 0개
+백원 : 0개
+계속 하시겠습니까
+
+ class One{
+    int num;
+	
+    public One(int num){
+       this.num = num;
+    }	
+	
+    public void money(){
+       System.out.println("오만원 : " + num/50000 + "장");
+          num = num % 50000;	
+       System.out.println("만원 : " + num/10000 + "장");
+          num = num % 10000;	       
+       System.out.println("오천원 : " + num/5000 + "장");
+          num = num % 5000;	
+       System.out.println("만원 : " + num/1000 + "장");
+          num = num % 1000;	
+       System.out.println("만원 : " + num/500 + "장");
+          num = num % 500;	
+       System.out.println("만원 : " + num/100 + "장");
+          num = num % 100;		
+    }
+ }
+---------------------------------
+ class Onemain {
+    public static void main(String[] args){
+       Scanner scanner = null;
+		
+       while(true){
+          scanner = new Scanner(System.in);
+          int num;
+			
+          num = scanner.nextInt();
+			
+          One one = new One(num);
+          one.money();
+			
+          System.out.println("계속 하시겠습니까");
+			
+          String yesOrno = scanner.next();
+          if(yesOrno.equals("Y") || yesOrno.equals("y"))
+	      continue;
+          else
+	      break;
+       }
+        System.out.println("프로그램 종료입니다.");
+        scanner.close();
+     }
+  }	
+
+==============================================
+7.자바의 명명 규칙에 대하여 설명하시오.
+
+ - 클래스: 첫 문자는 대문자, 합성어를 이룰 때 뒤에 오는 단어의 첫 문자도 대문자로 작성.
+ - 메소드와 변수: 첫 문자는 소문자, 합성어를 이룰 때 뒤에 오는 단어의 첫 문자는 대문자로 작성.
+ - 상수: ﻿모든 문자를 대문자, 합성어를 이룰 때는 언더바 사용.
+ - camel case
+   클래스의 명명 규칙(Circle + Point = CirclePoint)에서 낙타의 등모습을 닮았다하여 유래된 표기법.
+ - snake case
+   상수의 명명 규칙(COLOR_RAINBOW)에서 길게 이어지는 모습이 뱀을 닮았다하여 유래된 표기법.
+
