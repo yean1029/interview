@@ -1,0 +1,244 @@
+﻿1.반복문 3가지의 무한루프 만드는 방법은?
+ - for(;;){실행문
+   }
+ - while(true){실행문
+   }
+ - do{실행문
+   }while(true)
+
+2.구구단 출력을 하시오.
+ class quiz{
+    public static void main(String[] args){
+	for(int i =2; i < 10; i++){
+	
+	   for(int j = 1; j < 10; j++){
+	      System.out.println(i + " x " + j + " = " + (i * j)); 
+       }
+    }
+  }
+ }
+
+
+3.짝수단만 찍으시오.
+ class quiz{
+    public static void main(String[] args){
+	for(int i =2; i < 10; i++) {
+		if(i % 2 != 0)
+                continue;
+	
+	   for(int j = 1; j < 10; j++){
+	      System.out.println(i + " x " + j + " = " + (i * j)); 
+       }
+    }
+  }
+ }
+
+4.3의 배수인 단만 출력하시오.(3,6,9단)
+ class quiz{
+    public static void main(String[] args){
+	for(int i =2; i < 10; i++) {
+		if(i % 3 != 0)
+                continue;
+	
+	   for(int j = 1; j < 10; j++){
+	      System.out.println(i + " x " + j + " = " + (i * j)); 
+       }
+    }
+  }
+ }
+
+5.아래의 Star를 찍으시오.
+
+*****
+*****
+*****
+*****
+*****
+ class quiz{
+   public static void main(String[] args){			
+        for(int i = 1; i <= 5; i++){
+			
+	   for(int j = 1; j <= 5; j++){				
+		System.out.print("*");			
+	}
+	   System.out.println();
+     }
+   }
+ }
+		
+*
+**
+***
+****
+*****
+ class quiz{
+   public static void main(String[] args){			
+        for(int i = 1; i <= 5; i++){
+			
+	   for(int j = 1; j <= i; j++){				
+		System.out.print("*");			
+	}
+	   System.out.println();
+     }
+   }
+ }
+		
+*****
+****
+***
+**
+*
+
+ class quiz{
+   public static void main(String[] args){			
+        for(int i = 1; i <= 5; i++){
+			
+	   for(int j = 5; j >= i; j--){				
+		System.out.print("*");			
+	}
+	   System.out.println();
+     }
+   }
+ }
+
+    *
+   **
+  ***
+ ****
+*****	
+
+ class quiz{
+   public static void main(String[] args){
+      for(int i = 5; i >= 1; i--){
+			
+	for(int j = 4; j >= i; j--){			
+	     System.out.print(" ");			
+	}
+			
+	  for(int j = 1; j <= i; j++){			
+		System.out.print("*");			
+	}
+	System.out.println();	
+     }	   		
+   }
+ }
+
+   *
+  ***
+ *****
+******* 
+ class quiz {
+    public static void main(String[] args){
+	for(int i = 1; i < 5; i++){
+
+	    for(int j = 1; j < 5 - i; j++){				
+		System.out.print(" ");				
+`	}
+	    for(int j = 1; j < i * 2 - 1; j++){				
+		System.out.print("*");			
+	} 
+	System.out.println();
+     }		  
+   }
+ }
+
+6.함수는 어떻게 알아 볼수 있는가?
+ - () 괄호 앞에 있는 것이 함수.
+ - ex) ﻿main(), println() 이 때 함수는 main, println
+
+7.함수는 어떻게 만드는가?
+ - 함수를 만들 때는 반드시 ()를 적으며, 메소드 정의란 함수를 만드는 것을 일컫는다.
+
+8.함수는 어떻게 써먹는가?
+ - 메소드 호출이라고도 하며, 만들어 놓은 함수에 매개변수(인자, parameter)를 넣어 실행.
+
+9.아래의 함수를 만드시오.
+함수이름: starPrint
+매개변수: type 1개
+기능: 매개변수에 3를 전달하면 3층 석탑, 5를 전달하면 5층석탑
+예) 3전달시 3층석탑
+*
+**
+***
+5전달시 5층석탑
+*
+**
+***
+****
+*****
+ public static void main(String[] args){		
+     starPrint(3);
+     System.out.println();
+     starPrint(5);
+ }
+		
+ public static void starPrint(int x){
+     for(int i = 1; i <= x; i++){
+
+       for(int j = 1; j <= i; j++){
+	   System.out.print("*");
+      }
+     System.out.println();
+     }
+   }
+ }
+
+10.아래의 함수를 만들고,해당함수를 호출하여 확인하시오. 
+함수이름: getGrade()
+매개변수: double type 1개
+리턴: 수 우 미 양 가 중 하나의 char 타입
+ public static void main(String[] args) {
+   int kor = 70;
+   int eng = 65;
+   int math = 80;
+	      
+   int total = kor + eng + math;
+   double avg = total / 3.0;
+	 
+   System.out.println("당신의 성적은 " + getGrade(avg) + "입니다. ");
+ }     
+ public static char getGrade(double avg) {    
+   char ch = '가';
+			
+   if(avg >= 90) {
+      ch = '수';
+   }else if(avg >= 80) {
+      ch = '우';
+   }else if(avg >= 70) {
+      ch = '미';
+   }else if(avg >= 60) {
+      ch = '양';
+   }else{
+      ch = '가';
+  }
+   return ch;
+  }		
+ }
+  
+11.매개변수 하나를 받아 원의 넓이를 리턴하는 함수를 작성하시오.
+﻿ public static void main(String[] args){
+  double area = getCircleArea(10.0);
+    System.out.println("원의 넓이는 " + area);
+ }
+
+  public static double getCircleArea(double r){
+  final double PI = 3.14;
+  double area = 0;
+
+  area = r * r * 3.14;
+  return area;
+  } 
+ }
+
+12.매개변수 두개를 받아, 사각형의 넓이를 리턴하는 함수를 작성하시오.
+  public static void main(String[] args){		
+      int result;
+      result = area(3, 4);
+
+      System.out.println("사각형의 넓이 = " + result);
+ }
+  public static int area(int w, int h){
+      int areaResult = w * h;
+      return areaResult;
+   }	
+ }
