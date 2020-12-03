@@ -39,7 +39,64 @@
 
 10.가위, 바위, 보 게임 작성하시오.
 
+ public class Gbbo{
+   int my;
+	
+   public Gbbo(int my){
+	this.my = my;
+   }	
+	
+   public void play(){
+      int com = (int)(Math.random() * 3) + 1;	
+		
+      if((my == com)){
+         System.out.println("당신은 " + my + " 컴퓨터는 " + com + " 동점입니다.");			
+      }else if((my == 1) && (com == 2)){
+         System.out.println("당신은 " + my + " 컴퓨터는 " + com + " 탈락입니다.");			
+      }else if((my == 1) && (com == 3)){
+         System.out.println("당신은 " + my + " 컴퓨터는 " + com + " 승리입니다.");			
+      }else if((my == 2) && (com == 1)){
+         System.out.println("당신은 " + my + " 컴퓨터는 " + com + " 승리입니다.");			
+      }else if((my == 2) && (com == 3)){
+         System.out.println("당신은 " + my + " 컴퓨터는 " + com + " 탈락입니다.");			
+      }else if((my == 3) && (com == 1)){
+         System.out.println("당신은 " + my + " 컴퓨터는 " + com + " 탈락입니다.");	
+      }else {
+         System.out.println("당신은 " + my + " 컴퓨터는 " + com + " 승리입니다.");
+      }	
+    }
+  }
+==================================
+ import java.util.Scanner;
 
+  public class Gbbomain{
+     public static void main(String[] args){
+	Scanner scanner = null;
+		
+	while(true){
+	scanner = new Scanner(System.in);
+	int my;
+		
+	System.out.println("가위:1 , 바위:2 , 보:3 을 입력해주세요.");
+		
+	my = scanner.nextInt();
+		
+	Gbbo gbbo = new Gbbo(my);
+	gbbo.play();
+		
+		
+	System.out.println("계속 하시겠습니까?");
+		
+	String yesOrno = scanner.next();
+	if(yesOrno.equals("Y") || yesOrno.equals("y"))
+	    continue;
+	else
+ 	    break;
+   }
+	System.out.println("프로그램 종료입니다.");
+	scanner.close();
+   }
+ }	
 
 
 11.아래와 같이 계산기 프로그램을 작성하시오.
