@@ -40,7 +40,7 @@
 10.가위, 바위, 보 게임 작성하시오.
 
  public class Gbbo{
-   int my;
+   private int my;
 	
    public Gbbo(int my){
 	this.my = my;
