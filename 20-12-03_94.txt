@@ -110,8 +110,8 @@
 
  class Calculator{
     private int x;
-    String pOrm;
-    int y;
+    private String pOrm;
+    private int y;
 	
     public Calculator(int x, String pOrm, int y){
         this.x = x;
