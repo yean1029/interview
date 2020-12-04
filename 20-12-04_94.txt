@@ -1,0 +1,159 @@
+﻿1.아래의 접근제한자에 대하여 설명하시오.
+ - private: 다이렉트로 값을 넣을 수 없게 만드는 정보은닉의 역할.
+ - protected: 한 번의 상속을 한다는 의미.
+ - default: public과는 반대로 동일 package 내에서만 사용 가능.
+ - public: 다른 package 내에 있는 class를 통해 객체 생성을 가능하게 해주는 역할
+   (즉, 어떠한 패키지에서도 인스턴스 생성이 가능)
+﻿ - public(어디서든) > protected(상속) > default(동일패키지) > private(같은 클래스 내부)
+
+2.지역변수에 접근제한자를 붙이지 않는 이유는?
+ - 메소드가 호출되어 사용되고 나면 메소드는 소멸되기 때문
+
+3.캡슐화에 대하여 설명하시오.
+ - 관련이 있는 데이터를 하나로 묶어 최종 사용자가 내용을 세부적으로 모르더라도 사용 가능하도록 제공. 
+ - 사용자에게 편의성을 제공하며, 데이터의 종류, 사용 방법 등 중요한 요소를 통일성 있게 분류시켜줌.
+ - 정보 은닉과 유사
+
+4.랜덤 숫자 맞추기 게임을 짜시오.
+  class Game {
+	private int my;
+	private int com;
+
+	public int getMy(){
+		return my;
+	}
+	public void setMy(int my) {
+		this.my = my;
+	}
+	public int getCom(){
+		return com;
+	}
+	public void setCom(int com) {
+		this.com = com;
+	}
+	public void run(){	
+		
+		if(my == com) {
+		}else if(my >= com) {			
+			System.out.println("DOWN");
+		}else {			
+			System.out.println("UP");
+		} 
+	}	
+}
+--------------------------------------------
+import java.util.Scanner;
+
+public class Gamemain {
+
+	public static void main(String[] args) {
+		
+		Game game = new Game();
+		int cnt = 10;
+		int com = (int)(Math.random() * 100) + 1;	
+		
+		while(true) {
+			Scanner sc = new Scanner(System.in);
+			System.out.println("1~100 사이의 숫자를 입력하세요.");
+			System.out.println("남은 기회는 " + cnt + "입니다.");
+			
+			int my = sc.nextInt();
+						
+			game.setMy(my);
+			game.setCom(com);
+			game.run();
+			
+			cnt--;
+			
+	 if(my == com){		
+	    System.out.println("정답입니다." + cnt + "회 만에 맞추셨습니다.");
+	       break;
+	 }else if(cnt == 0){
+            System.out.println("실패입니다.");
+	       break;
+	 }else
+	    continue;	
+}	
+  }
+ }
+
+5.static 변수의 다른 용어 3가지를 말해 보시오.
+ - 클래스 변수, 공유 변수, 정적 변수
+ - 클래스 내부에 존재해서 부르는 명칭X → static이 표기되어 있기 때문!
+
+6.자바의 메모리 영역을 3가지로 나누고, 해당 영역에 들어가는 정보를 말하여 보시오.
+ - Method Area, Call Stack, Heap 영역으로 나뉜다.
+ - Method Area에는 class와 생성하려는 인스턴스의 class에 존재하는 static의 정보가 저장된다.
+ - Call Stack: class의 main 함수와 참조변수가 저장된다.
+ - Heap: 인스턴스가 생성되어 기본값으로 초기화 된 후 main 함수에 입력된 정보가 저장된다.
+
+7.static 변수의 접근 방법은?
+ - 내부 접근: static 변수가 선언된 클래스 내에서는 이름만으로 접근 가능(즉, 같은 클래스 내에서 사용)
+ - 외부 접근: private 선언되지 않은 한 클래스 외부에서 접근 가능.(즉, 다른 클래스에서 사용 가능)  
+   ex)﻿AccessWay way = new AccessWay();
+      way.num++;        //인스턴스 명으로 접근
+      AccessWay.num++;  //클래스 명으로 접근(다이렉트)
+
+8.클래스 변수의 활용의 예를 드시오 .
+ - ﻿static 표기 시, 인스턴스 생성할 때마다 새로 만들지 않고 단 한 번만 생성되어 공유됨(값의 공유가 목적인 변수)
+ - ex) static final double PI = 3.14;
+
+9.스태틱 함수에 인스턴스 변수가 올수 없는 이유는?
+ 
+
+10.아래의 프로그램을 작성 하시오.
+
+다음 멤버를 가지고 직사각형을 표현하는 Rectangle 클래스를 작성하라.
+
+- int 타입의 x, y, width, height 필드: 사각형을 구성하는 점과 크기 정보
+- x, y, width, height 값을 매개변수로 받아 필드를 초기화하는 생성자
+- int square() : 사각형 넓이 리턴
+- void show() : 사각형의 좌표와 넓이를 화면에 출력
+- boolean contatins(Rectangle r) : 매개변수로 받은 r이 현 사각형 안에 있으면 true 리턴
+- main() 메소드의 코드와 실행 결과는 다음과 같다
+public static void main(String[] args) {
+   Rectangle r = new Rectangle(2, 2, 8, 7);
+   Rectangle s = new Rectangle(5, 5, 6, 6);
+   Rectangle t = new Rectangle(1, 1, 10, 10);
+   
+   r.show();
+   System.out.println("s의 면적은 "+s.square());
+   if(t.contains(r)) System.out.println("t는 r을 포함합니다.");
+   if(t.contains(s)) System.out.println("t는 s를 포함합니다.");
+}
+
+(2,2)에서 크기가 8x7인 사각형
+s의 면적은 36
+t는 r을 포함합니다.
+
+ public class Rectangle {
+    int x, y, width, height;
+	
+	public Rectangle(int x, int y, int width, int height) {
+	 this.x = x;
+	 this.y = y;
+	 this.width = width;
+	 this.height = height;		
+	}
+	
+	public int square() {
+	 return width * height;
+	}
+	
+	public void show() {
+	 System.out.println("(" + x + "," + y + ")에서 크기가 " + width + "x" + height + "인 사각형");
+ }
+
+-------------------------------------------------
+public class Rectanglemain {	
+   public static void main(String[] args) {
+	 Rectangle r = new Rectangle(2, 2, 8, 7);
+	 Rectangle s = new Rectangle(5, 5, 6, 6);
+	 Rectangle t = new Rectangle(1, 1, 10, 10);
+		   
+	 r.show();
+	 System.out.println("s의 면적은 "+s.square());
+	 if(t.contains(r)) System.out.println("t는 r을 포함합니다.");
+	 if(t.contains(s)) System.out.println("t는 s를 포함합니다.");
+    }
+ }
