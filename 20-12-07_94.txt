@@ -223,3 +223,11 @@
     }
   }		
  }
+ -------------------------------------------------
+ class Reversemain{
+    public static void main(String[] args){
+      Reverse reverse = new Reverse();
+      reverse.input();
+      reverse.reversePrint();
+   }
+ }
