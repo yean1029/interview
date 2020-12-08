@@ -162,13 +162,64 @@
    }
      System.out.println(k);
   }
- }   
-    모르겠습니다...
+ }   ??
 
 
 11.사용자에게 받은 문자열을 역순으로 화면에 출력하는 프로그램을 작성하시오.
 입력:abcde
 출력:edcba
 
+1) 
+ import java.util.Scanner;
 
+ class Reversewords{
+    public static void main(String[] args){
+      String words;
+		
+      Scanner sc = new Scanner(System.in);
+		
+      words = sc.next();
+      for(int i = words.length()-1; i>=0; i--){
+      System.out.print(words.charAt(i));
+     }	
+   }
+ }
+ ==============================================
+2)
+ import java.util.Scanner;
 
+ class Reverse{
+    private String words;
+	
+    public Reverse(){
+    }
+
+    public Reverse(String words){
+      this.words = words;
+    }
+
+    public String getWords(){
+      return words;
+    }
+	
+    public void setWord(String words){
+      this.words = words;
+    }
+	
+    public void input(){
+      Scanner sc = new Scanner(System.in);
+      System.out.println("입력할 단어를 넣으세요.");
+      words = sc.next();
+      sc.close();
+    }
+	
+    public void reversePrint(){		
+      if(words == null) {
+       System.out.println("단어 입력이 안되었습니다.");
+       return;
+    }		
+      for(int i = words.length()-1; i>=0; i--){
+      System.out.print(words.charAt(i));
+    }
+  }		
+ }
