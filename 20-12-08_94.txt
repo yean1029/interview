@@ -180,31 +180,47 @@ import java.util.Scanner;
 입력 : 그만  
 출력 : 프로그램 종료
 
-import java.util.Scanner;
- class Space{
-    private String str;
-    private int count;
+ class Wordcount{
+    private String sentence;
+    private String[] words;
 	
-    public Space(){
-    }	
-    public Space(String str){
-      this.str = str;
+    Wordcount(String sentence){
+       this.sentence = sentence;	
     }
-    public void input(){
-      while(true){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("문자를 입력하세요.");		
-        str = sc.nextLine();
-        sc.close();
-			
-      for(int i = 0; i<str.length(); i++){
-        if(str.charAt(i) == ' ')
-        count++;
-		}System.out.println("단어의 개수는: " + (count+1));
-	}
-	}
-}
--------------------------------------
-
-
-
+    private void wordSplit(){
+       if(sentence == null){
+	  System.out.println("입력값이 없습니다.");
+	  return;
+       }
+       this.words = sentence.split(" ");
+    }
+    private void wordPrint(){
+       if(words == null){
+          System.out.println("입력값이 없습니다.");
+          return;
+       }
+       System.out.println("단어의 갯수는: " + words.length);
+       for(int i = 0; i<words.length; i++){
+          System.out.println("단어는" + words[i]);
+    }
+    }
+    public void getResult(){
+       wordSplit();
+       wordPrint();
+   }
+ }
+----------------------------------------------------------------------
+import java.util.Scanner;
+ class Wordcountmain{
+  public static void main(String[] args){
+		
+     Scanner sc = new Scanner(System.in);
+     System.out.println("단어개수 확인하기");
+		
+     while(true){
+        System.out.println("입력:");
+        Wordcount wordCount = new Wordcount(sc.nextLine());
+        wordCount.getResult();
+     }		
+   }
+ }
