@@ -101,18 +101,33 @@
  -5개의 숫자를 랜덤으로 받아 배열로 저장
  -5개의 숫자중 가장 큰값을 출력
  class Maxnum{
-    public static void main(String[] args){	
-      int[] num = new int[5];
-      int max = num[0];
+    private int[] num = new int[5];
+    private int max;
 		
-      for(int i = 0; i < num.length; i++){
+    public Maxnum(){
+    }	
+    public void getMax(){
+       int[] num = new int[5];
+       max = num[0];
+		
+       for(int i = 0; i < num.length; i++){
          num[i] = (int)(Math.random()*100) + 1;
          System.out.print(num[i] + " "); 
 			
          max = max > num[i] ? max : num[i];
+       }
     }
-      System.out.println();
-      System.out.println("최대값은: " + max);
+    public void getMaxnum(){
+       System.out.println();
+       System.out.println("최대값은: " + max);
+   }		
+ }
+-----------------------------------------------------
+ class Maxnummain{
+    public static void main(String[] args){	
+       Maxnum maxnum = new Maxnum();
+       maxnum.getMax();
+       maxnum.getMaxnum();
    }
  }
 
@@ -180,7 +195,7 @@ int[] unit = {50000, 10000, 1000, 500, 100, 50, 10, 1}; // 환산할 돈의 종�
  평균은 5.4
 
  class Average{
-    int[] num = new int[10];
+    private int[] num = new int[10];
     private int sum;
 	
     public Average(){
