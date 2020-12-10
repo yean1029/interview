@@ -1,0 +1,216 @@
+﻿1.상속을 UML로 표기해 보세요.
+ - class BusinessMan이 class Man을 상속하는 경우 
+  :BusinessMan → Man 이 자체를 UML 이라 표현한다.
+
+2.부모클래스와 자식클래스의 다른 용어들은?
+ - 부모클래스: 상속이 되는 클래스이며, 상위/기초 클래스라고 불린다.
+ - 자식클래스: 상속을 하는 클래스이며, 하위/유도 클래스라고 불린다.
+
+3.super 키워드와 this 키워드의 차이는 무엇인가요?
+ - super 키워드는 부모 클래스의 생성자를 호출하며, 
+   this 키워드는 자기 자신의 생성자를 호출한다.
+
+4.단일 상속과 다중상속 이란?
+ - 단일 상속: 한 클래스가 단 하나의 클래스만을 상속하는 것.(java에서는 단일 상속만 가능)
+ - 다중 상속: 한 클래스가 여러개의 클래스를 상속하는 것.
+   ex) class A, B, C가 있는 경우 C class가 A, B class 두 개를 상속 받을 수 있는 경우.
+
+
+5.다음 코드와 같이 과목과 점수가 짝을 이루도록 2개의 배열을 작성하라.
+ String course[] = {"Java", "C++", "HTML5", "컴퓨터구조", "안드로이드"};
+ int score[]  = {95, 88, 76, 62, 55};
+그리고 다음 예시와 같이 과목 이름을 입력받아 점수를 출력하는 프로그램을 작성하라. 
+"그만"을 입력받으면 종료한다. (Java는 인덱스 0에 있으므로 score[0]을 출력)
+
+과목 이름 >> Jaba
+없는 과목입니다.
+과목 이름 >> Java
+Java의 점수는 95
+과목 이름 >> 안드로이드
+안드로이드의 점수는 55
+과목 이름 >> 그만
+[Hint] 문자열을 비교하기 위해서는 String 클래스의 equals()메소드를 이용해야 한다.
+
+String name;
+if(course[i].equals(name)) {
+    int n = score[i];
+    ...
+}
+-----------------------------------------------------
+import java.util.Scanner;
+  class Cost {
+    public static void main(String[] args){
+	
+    String course[] = {"Java", "C++", "HTML5", "컴퓨터구조", "안드로이드"};
+    int score[]  = {95, 88, 76, 62, 55};
+
+    while(true){
+       Scanner sc = new Scanner(System.in);
+       System.out.println("과목 이름을 입력해주세요. ");
+       String str;
+       str = sc.next();
+	
+       if(str.equals("그만")){	
+          System.out.println("종료합니다.");
+            break;	
+       }
+			
+       for(int i = 0; i < course.length; i++){
+         if(str.equals(course[i])){
+           System.out.println(score[i]);	
+       }else 
+           System.out.println("없는 과목입니다.");
+           break;
+        }
+     }		
+   }
+ }
+
+6.다음은 2차원 상의 한 점을 표현하는 Point 클래스이다.
+
+class Point {
+   private int x, y;
+   public Point(int x, int y) { this.x = x; this.y = y; }
+   public int getX() { return x; }
+   public int getY() { return y; }
+   protected void move(int x, int y) { this.x =x; this.y = y; }
+}
+
+Point를 상속받아 색을 가진 점을 나타내는 ColorPoint 클래스를 작성하라. 다음 main() 메소드를 포함하고 실행 결과와 같이 출력되게 하라.
+
+public static void main(String[] args) {
+   ColorPoint cp = new ColorPoint(5, 5, "YELLOW");
+   cp.setXY(10, 20);
+   cp.setColor("RED");
+   String str = cp.toString();
+   System.out.println(str+"입니다. ");
+}
+=======================
+RED색의 (10,20)의 점입니다. 
+
+class ColorPoint extends Point{	
+	String str;
+	
+	public ColorPoint(int x, int y, String str) {
+		super(x, y);
+		this.str = str;
+	}
+	
+	public void setXY(int x, int y) {
+		super.move(x, y);
+	}
+	
+	public void setColor(String str) {
+		this.str = str;
+	}
+	
+	public String toString(String str, int x, int y) {	
+		return str + "색의 (" + super.getX() + "," + super.getY() + ") 의 점";
+	}
+
+7.Point를 상속받아 색을 가진 점을 나타내는 ColorPoint 클래스를 작성하라. 
+다음 main() 메소드를 포함하고 실행 결과와 같이 출력되게 하라.
+
+public static void main(String[] args) {
+   ColorPoint zeroPoint = new ColorPoint(); // (0,0) 위치의 BLACK 색 점
+   System.out.println(zeroPoint.toString() + "입니다.");
+
+   ColorPoint cp = new ColorPoint(10, 10); // (10,10) 위치의 BLACK 색 점
+   cp.setXY(5,5);
+   cp.setColor("RED");
+   System.out.println(cp.toString()+"입니다.");
+}
+=========================
+BLACK색의 (0,0) 점입니다.
+RED색의 (5,5) 점입니다.
+ class Point {
+    private int x, y;
+
+    public Point(int x, int y){
+       this.x = x;
+       this.y = y;
+    }
+
+    public int getX(){
+       return x;
+    }
+
+    public int getY(){
+       return y;
+    }
+
+    protected void move(int x, int y){
+       this.x = x;
+       this.y = y;
+    }
+ }
+	
+ class ColorPoint extends Point{
+    String str;
+	
+    public ColorPoint(){
+       this(0, 0, "BLACK");
+    }
+	
+    public ColorPoint(int x, int y){
+       this(x, y, "BLACK");
+    }
+	
+    public ColorPoint(int x, int y, String str){
+       super(x, y);
+       this.str = str;
+    }
+	
+    public void setXY(int x, int y){
+       super.move(x, y);
+		
+    }
+    public void setColor(String str){
+       this.str = str;
+    }
+	
+    public String toString(String str, int x, int y){
+       return str + "색의 (" + super.getX() + "," + super.getY() + ") 의 점";
+    }
+
+8.Point를 상속받아 3차원의 점을 나타내는 Point3D 클래스를 작성하라. 다음 main() 메소드를 포함하고 실행 결과와 같이 출력되게 하라.
+
+ public static void main(String[] args) {
+   Point3D p = new Point3D(1,2,3); // 1,2,3은 각각 x, y, z축의 값.
+   System.out.println(p.toString()+"입니다.");
+   p.moveUp(); // z 축으로 위쪽 이동
+   System.out.println(p.toString()+"입니다.");
+   p.moveDown(); // z 축으로 아래쪽 이동
+   p.move(10, 10); // x, y 축으로 이동
+   System.out.println(p.toString()+"입니다.");
+   p.move(100,  200, 300); // x, y, z축으로 이동
+   System.out.println(p.toString()+"입니다.");
+}
+(1,2,3) 의 점입니다.
+(1,2,4) 의 점입니다.
+(10,10,3) 의 점입니다.
+(100,200,300) 의 점입니다.
+
+
+
+
+
+9.배열을 이용하여 간단한 극장 예약 시스템을 작성하여 보자.
+
+아주 작은 극장이라서 좌석이 10개 밖에 되지 않는다.
+
+사용자가 예약을 하려고 하면 먼저 좌석 배치표를 보여준다.
+
+즉, 예약이 끝난 좌석은 1로, 예약이 되지 않은 좌석은 0으로 나타낸다.
+=========
+출력
+--------------------
+0 1 2 3 4 5 6 7 8 9
+--------------------
+0 0 0 0 0 0 0 0 0 0
+
+몇번째 좌석을 예약 하시겠습니까? 2
+--------------------
+0 1 2 3 4 5 6 7 8 9
+--------------------
+0 0 1 0 0 0 0 0 0 0
