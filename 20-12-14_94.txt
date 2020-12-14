@@ -1,0 +1,248 @@
+﻿1.Object 클래스에 대하여 설명하시오.
+ - Object class는 최상위 클래스이고, 데이터 멤버와 함수만을 가지며, 총 11개의 메소드로 구성되어있다.
+   ex) toString()
+ - 모든 class는 상속하는 class가 없다면, Object class를 직접/간접 상속받는다.
+ * 컴파일러가 자동으로 하는 것
+ 1) 디폴트 생성자: 생성자가 하나라도 없다면 디폴트 생성자를 자동으로 생성.
+ 2) 상속받은게 없다면 자동으로 Object 클래스를 상속
+  : 다른 클래스를 상속하고 있다면 부모의 클래스는 이미 Object 클래스를 상속하고 있으므로 간접 상속받음.
+    Object class는 최상위 부모이므로 자식 class가 사용 가능.
+
+2.아래와 같이 출력되는 이유를 하시오.
+class A {	
+	@Override
+	public String toString() {	
+	   return "이것은 A 클래스 입니다.";
+	 }	
+}
+
+public class TestMain {
+	public static void main(String[] args) {
+		A a  = new A();
+		System.out.println(a);
+		
+	   }		
+}
+===============
+이것은 A 클래스 입니다.
+ - 컴파일러에 의해 자동적으로 class A는 Object class를 상속받아, toString 함수를 오버라이딩하고 있기 때문.
+ - public static string valueof(Object obj){
+   return (obj == null) ? "null" : obj.toString();
+   }   
+   //valueof 메소드에 의해 String형으로 변환
+ 
+3. class 이름 및 함수 에서 final 의 의미는?
+ - class에서의 final은 해당 class를 상속받을 수 없다는 의미.
+ - 함수에서의 final은 해당 함수를 다른 class에서 오버라이딩 할 수 없다는 의미. 
+
+4.연습문제 7-22 번을 푸시오.
+ abstract class Shape{
+    Point p;
+	
+    Shape(){
+      this(new Point(0,0));
+    }	
+    Shape(Point p){
+      this.p = p;
+    }
+    abstract double calcArea(); // 도형의 면적을 계산해서 반환하는 메서드
+	
+    Point getPosition() {
+       return p;
+    }
+    void setPosition(Point p) {
+       this.p = p;
+    }
+ }
+
+ class Point{
+    int x;
+    int y;
+	
+    Point(){
+       this(0, 0);
+    }
+    Point(int x, int y){
+       this.x = x;
+       this.y = y;
+    }
+    public String toString() {
+       return "{" + x + "," + y + "]";
+    }
+ }
+
+ class Circle extends Shape{
+    double r;
+    Circle(double r){
+       this(new Point(0, 0), r);
+    }
+    Circle(Point p, double r){
+       super(p);
+       this.r = r;
+    }
+    double calcArea(){
+       return r * r * Math.PI;
+    }
+ }
+
+ class Rectangle extends Shape{
+    double width;
+    double height;
+	
+    Rectangle(double width, double height){
+       this(new Point(0, 0), width, height);
+    }
+    Rectangle(Point p, double width, double height){
+       super(p);
+       this.width = width;
+       this.height = height;
+    }
+    double calcArea(){
+       return width * height;
+    }
+    boolean isSquare(){
+       if(width == height){
+          return true;
+       }else
+          return false;
+  }
+ }
+
+5.연습문제 7-23 번을 푸시오.
+
+
+6. interface 와 class 의 차이는?
+ - interface(=추상메소드)는 함수 선언(즉, 구현부분 혹은 바디가 존재하지 않음)이 불가하며, 
+   class는 구현부분이 존재하므로 함수 선언이 가능하다.
+   따라서 interface는 함수와는 다르게 구현부분이 존재하지 않아 객체 생성도 불가(참조 변수 선언은 가능)
+
+7. 다음을 프로그램 하시오.[필수]
+interface Printable { // MS가 정의하고 제공한 인터페이스
+   public void print(String doc);
+}
+ SPrinterDriver 와 LPrinterDriver를 만드시오
+======================
+
+public static void main(String[] args) {
+   String myDoc = "This is a report about...";
+   
+   // 삼성 프린터로 출력
+   Printable prn = new SPrinterDriver();
+   prn.print(myDoc);
+   System.out.println();
+
+   // LG 프린터로 출력
+   prn = new LPrinterDriver();
+   prn.print(myDoc);
+}
+================================================
+출력: From Samsung printer
+This is a report about ...
+
+From LG printer
+This is a report about ...
+==================================
+ interface Printable{
+   public void print(String doc);
+ }
+ class SPrinterDriver implements Printable{
+   @Override
+   public void print(String doc){
+      System.out.println("From Samsung printer");
+      System.out.println(doc);
+   }
+}
+
+ class LPrinterDriver implements Printable{
+   @Override
+   public void print(String doc){
+      System.out.println("Rfom LG printer");
+      System.out.println(doc);
+   }
+ }
+
+ class Interface{
+   public static void main(String[] args) {
+      String myDoc = "This is a report about...";
+		
+      Printable prn = new SPrinterDriver();
+      prn.print(myDoc);
+      System.out.println();
+		
+      prn = new LPrinterDriver();
+      prn.print(myDoc);
+   }
+ }
+
+8.@Override 에 대하여 설명하시오.
+ - @Override는 annotion의 하나이며, '부모클래스에서 오버라이드한 메소드이다' 라는 것을 지칭.
+ - 프로그래머 혹은 컴파일 시 '오버라이딩이다' 라고 명확하게 알려주는 표시. 
+   
+9.interface 에 대하여 설명하시오.
+ - 자손 calss가 구현하라는 의미로 추상메소드를 가지고 있는 것이 intreface이며, 대표적인 표준/규약(강제)이다.
+   (calss가 인터페이스의 메소드들을 구현하지 않는다면 컴파일이 실행되지 않기 때문에 강제성을 띈다)
+ - 구현부분이 없는 함수는 ﻿abstract public를 표기해야하지만, 컴파일러가 자동으로 삽입.
+ - ﻿java의 상속은 단일상속만 가능하지만, interface는 다중 구현이 가능하다. 
+
+10.interface에 올 수 있는 두가지는?
+ - 상수와 추상메소드만 가능.
+
+11.abstract 키워드에 대하여 설명하시오.
+ - abstract는 추상메소드를 이용하여 자손 class가 구현하라 라는 의미. 
+ - 추상클래스에서는 일반메소드와 추상메소드가 존재하는데, abstract를 사용하여 구분.
+
+12. 아래의 출력 결과가 아래와 같이 나오도록 프로그래밍 하시오.
+Object obj = new Circle(10);
+System.out.println(obj);
+=====================
+출력: 넓이는 100 입니다.
+
+ class Circle{
+   private double radius;
+	
+   public Circle(double radius){
+      this.radius = radius;
+   }
+   public double getArea(){
+      return radius * radius * Math.PI;
+   }
+   public String toString(){
+      return "넓이는 " + getArea() + "입니다.";
+   }
+ }	
+-----------------------------------------------------
+ class Circlemain{
+   public static void main(String[] args){
+      Object obj = new Circle(10);
+      System.out.println(obj);
+   }
+ }
+
+13. 아래의 메모리를 그리시오.
+class MobilePhone {
+    protected String number;
+    
+    public MobilePhone(String num) {
+        number = num;
+    }    
+    public void answer() {
+        System.out.println("Hi~ from " + number);
+    }
+}
+
+class SmartPhone extends MobilePhone { 
+    private String androidVer;
+    
+    public SmartPhone(String num, String ver) {
+        super(num);
+        androidVer = ver;
+    }    
+    public void playApp() {
+        System.out.println("App is running in " + androidVer);
+    }
+}
+=======================================
+	MobilePhone phone = new SmartPhone("010-555-777", "Nougat");
+    	phone.answer();    	
+    	SmartPhone s = (SmartPhone)phone;    	
+    	s.playApp();
